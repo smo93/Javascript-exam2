@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Canvas triangles</title>
+
+    <style>
+      canvas {
+        display: block;
+        border: 1px solid black;
+      }
+      div {
+        width: 600px;
+        height: 400px;
+        margin: auto;
+        text-align: center;
+        position: relative;
+      }
+      img {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas width='600' height='400'></canvas>
+      <label for='color'>Choose color: </label>
+      <input id='color' type='color'>
+      <button id='clear'>Clear canvas</button>
+      <button id='save'>Save canvas</button>
+      <img id='1' src='./img/dot.png'>
+      <img id='2' src='./img/dot.png'>
+      <img id='3' src='./img/dot.png'>
+    </div>
+
+    <script src='./bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='./app.js'></script>
+  </body>
+<html>
