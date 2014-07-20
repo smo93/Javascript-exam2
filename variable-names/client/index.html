@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Variable names</title>
+
+    <link rel='stylesheet' href='./bower_components/bootstrap/dist/css/bootstrap.min.css'>
+  </head>
+  <body>
+    <div class='container'>
+      <div class='row alert alert-success'>
+        <div class='col-sm-12'>
+          <h2>Variable names</h2>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <form id='name-fields' class='form-horizontal center-block' style='width: 600px;'>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script id='variable-field' type='text/x-handlebars-template'>
+      <div class='form-group'>
+        <div class='col-sm-10'>
+          <input type='text' value='{{name}}' class='form-control'>
+        </div>
+        <div class='col-sm-2'>
+          <button class='btn btn-primary' data-id='{{nameId}}'>Update name</button>
+        </div>
+      </div>
+    </script>
+
+    <script src='./bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='./bower_components/handlebars/handlebars.min.js'></script>
+    <script src='./bower_components/lodash/dist/lodash.min.js'></script>
+    <script src='./app.js'></script>
+  </body>
+</html>
