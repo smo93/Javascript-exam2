@@ -1,10 +1,11 @@
 $(document).ready(function() {
   var
+    serverUrl = 'http://localhost:8080',
     idToName = [],
     fieldSource = $('#variable-field').html(),
     fieldTemplate = Handlebars.compile(fieldSource);
 
-  $.getJSON('http://localhost:8080/names', function(data) {
+  $.getJSON(serverUrl + '/names', function(data) {
 
     idToName = _.groupBy(data, function(elem) { return elem.nameId; });
 
@@ -21,7 +22,7 @@ $(document).ready(function() {
         if(idToName[nameId].name !== newName) {
           $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/name',
+            url: serverUrl + '/name',
             contentType: 'application/json',
             data: JSON.stringify({
               name: newName,
