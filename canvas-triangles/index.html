@@ -8,11 +8,7 @@
         display: block;
         border: 1px solid black;
       }
-      div {
-        width: 600px;
-        height: 400px;
-        margin: auto;
-        text-align: center;
+      .canvas {
         position: relative;
       }
       img {
@@ -21,21 +17,79 @@
         height: 6px;
         display: none;
       }
+      .btn-group-vertical {
+        width: 100%;
+      }
     </style>
+    <link rel='stylesheet' href='./bower_components/bootstrap/dist/css/bootstrap.min.css'>
   </head>
   <body>
-    <div>
-      <canvas width='600' height='400'></canvas>
-      <label for='color'>Choose color: </label>
-      <input id='color' type='color'>
-      <button id='clear'>Clear canvas</button>
-      <button id='save'>Save canvas</button>
-      <img id='1' src='./img/dot.png'>
-      <img id='2' src='./img/dot.png'>
-      <img id='3' src='./img/dot.png'>
+    <div class='container'>
+      <div class='row alert alert-success'>
+        <div class='col-lg-12'>
+          <h1>Canvas Triangles</h1>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <hr>
+      <div class='row'>
+        <div class='col-lg-8'>
+          <div class='canvas'>
+            <canvas width='750' height='400'></canvas>
+            <img id='1' src='./img/dot.png'>
+            <img id='2' src='./img/dot.png'>
+            <img id='3' src='./img/dot.png'>
+          </div>
+        </div>
+        <div class='col-lg-4'>
+          <ul class='list-group'>
+            <li class='list-group-item'>
+              <label for='color'>Choose color:</label>
+              <input id='color' type='color'>
+            </li>
+            <li class='list-group-item'>
+              <div class='btn-group-vertical'>
+                <button id='clear' class='btn btn-success'>Clear canvas</button>
+                <button id='save' class='btn btn-success'>Save canvas</button>
+                <button id='load' class='btn btn-success' data-toggle='modal' data-target='#loadingModal'>Load canvas</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class='container'>
+      <div class='row alert alert-success'>
+        <div class='col-lg-12'>
+          <p class='text-right'>By Georgi Peev</p>
+        </div>
+      </div>
+    </div>
+
+    <div class='modal fade' id='loadingModal' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+            <h4 class='modal-title' id='myModalLabel'>Choose a masterpiece to load</h4>
+          </div>
+          <div class='modal-body'>
+            <div class='input-group has-success'>
+              <select id='saved-list' class='form-control'>
+              </select>
+              <span class='input-group-btn'>
+                <button id='load-selected' type='button' class='btn btn-success'>Load</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src='./bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='./bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
     <script src='./app.js'></script>
   </body>
 <html>
