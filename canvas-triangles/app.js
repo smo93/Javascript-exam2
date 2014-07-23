@@ -4,12 +4,14 @@ $(document).ready(function() {
     context = canvas.get(0).getContext('2d'),
     points = [],
     triangles = [],
+    saves = [],
     colorField = $('#color');
 
-  loadLocalStorat();
-
-  if(triangles === 'undefined') {
-    triangles = [];
+  saves = localStorage.getItem('saves');
+  if(saves === null) {
+    saves = [];
+  } else {
+    saves = JSON.parse(saves);
   }
 
   function drawTriangle(pts, col) {
@@ -40,17 +42,27 @@ $(document).ready(function() {
   }
 
   function saveCanvas() {
-    var trianglesJSON = JSON.stringify(triangles);
+    var trianglesJSON = JSON.stringify(triangles),
+      canvasName = prompt('Enter a name for your masterpiece:');
 
-    localStorage.setItem('canvas', trianglesJSON);
+    if(canvasName === '') {
+      return;
+    }
+
+    localStorage.setItem(canvasName, trianglesJSON);
+
+    saves.push(canvasName);
+    localStorage.setItem('saves', JSON.stringify(saves));
   }
 
-  function loadLocalStorat() {
+  function loadLocalStorage(canvasName) {
     points = [];
 
     $('img').hide();
 
-    triangles = localStorage.getItem('canvas');
+    triangles = localStorage.getItem(canvasName);
+
+    canvas.get(0).width = canvas.get(0).width;
 
     if(triangles === null) {
       triangles = [];
@@ -80,7 +92,6 @@ $(document).ready(function() {
 
       $('img').hide();
     }
-    console.log(triangles);
   });
 
   $('#clear').on('click', function() {
@@ -93,4 +104,24 @@ $(document).ready(function() {
   });
 
   $('#save').on('click', saveCanvas);
+  $('#load').on('click', function() {
+    var dropdown = $('#saved-list');
+
+    dropdown.empty();
+
+    saves.forEach(function(save) {
+      dropdown.append([
+        '<option>',
+        save,
+        '</option>'
+      ].join(''));
+    });
+  });
+  
+  $('#load-selected').on('click', function() {
+    var canvasName = $('#saved-list').val();
+
+    loadLocalStorage(canvasName);
+    $('#loadingModal').modal('toggle');
+  });
 });
