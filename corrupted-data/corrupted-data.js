@@ -8,14 +8,14 @@ function getDuplicates(data) {
 
   var
     key,
-    groupByMac = function(elem) { return elem.fields.mac; };
+    groupById = function(elem) { return elem.fields.student; };
   for(key in days) {
-    var macs = _.groupBy(days[key], groupByMac);
+    var ids = _.groupBy(days[key], groupById);
 
-    var mac;
-    for(mac in macs) {
-      if(macs[mac].length > 1) {
-        duplicates.push(macs[mac][0]);
+    var id;
+    for(id in ids) {
+      if(ids[id].length > 1) {
+        duplicates.push(ids[id][0]);
       }
     }
   }
